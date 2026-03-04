@@ -3,7 +3,7 @@ GitOps with FastAPI
 
 ***University of Amsterdam***
 
-# 1. Introduction 
+# 1. Introduction
 
 In this tutorial, we use GitOps practices with FastAPI, including CI/CD pipelines, code quality tools, and automated testing.
 
@@ -35,7 +35,7 @@ In this tutorial, we use GitOps practices with FastAPI, including CI/CD pipeline
 
 
 
-# 2. Tutorial 
+# 2. Tutorial
 
 The steps of this tutorial are as follows:
 - [Building REST APIs with FastAPI](#21-setting-up-the-project)
@@ -60,17 +60,17 @@ Prerequisites:
    ```
 
 * Set Up the Python Environmentt:
-   
+
    ```bash
    # Create a virtual environment
    python -m venv venv
-   
+
    # Activate the virtual environment
    # On Linux/MacOS:
    source venv/bin/activate
    # On Windows:
    venv\Scripts\activate
-   
+
    # Install dependencies
    pip install -r requirements.txt
    ```
@@ -110,7 +110,7 @@ Prerequisites:
    ```bash
    # Check for issues
    ruff check app/ tests/
-   
+
    # Fix auto-fixable issues
    ruff check app/ tests/ --fix
    ```
@@ -120,7 +120,7 @@ Prerequisites:
    ```bash
    # Check formatting
    black --check app/ tests/
-   
+
    # Format code
    black app/ tests/
    ```
@@ -134,7 +134,7 @@ Pre-commit hooks automatically run checks before each commit to ensure consisten
    ```bash
    # Install pre-commit
    pip install pre-commit
-   
+
    # Install the git hooks
    pre-commit install
    ```
@@ -142,11 +142,11 @@ Pre-commit hooks automatically run checks before each commit to ensure consisten
 * Using Pre-commit:
 
    Pre-commit will now run automatically on `git commit`. You can also run it manually:
-   
+
    ```bash
    # Run on all files
    pre-commit run --all-files
-   
+
    # Run on staged files
    pre-commit run
    ```
@@ -200,14 +200,14 @@ This repository includes a Helm chart for deploying the application to Kubernete
   - Kubernetes 1.19+
   - Helm 3.0+
 
-* Install the Helm Chart: 
+* Install the Helm Chart:
 
    ```bash
    helm install my-release ./helm/fastapi-gitops-starter
    ```
 
-* Uninstall the Helm Chart: 
-   
+* Uninstall the Helm Chart:
+
    ```bash
    helm uninstall my-release
    ```
@@ -239,7 +239,7 @@ including host and paths.
    * To make sure we do not commit secrets
    * To check code style
 
-  
+
 ## 3.2 Add a New Endpoint
 
 1. Open `app/main.py`

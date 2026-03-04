@@ -3,6 +3,14 @@ import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+
+
+# used: https://fastapi.tiangolo.com/tutorial/body/
+class ItemCreate(BaseModel):
+    name: str
+    description: str
+
 
 app = FastAPI(
     title="FastAPI GitOps Starter",
@@ -46,6 +54,17 @@ async def get_item(item_id: int):
         "id": item_id,
         "name": f"Item {item_id}",
         "description": f"This is item number {item_id}",
+    }
+
+
+@app.post("/api/items")
+async def create_item(item: ItemCreate):
+    """Create a new item."""
+    return {
+        "id": 999,
+        "name": item.name,
+        "description": item.description,
+        "created": True,
     }
 
 

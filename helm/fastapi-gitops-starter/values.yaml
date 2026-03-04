@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/qcdis/fastapi-gitops-starter
-  pullPolicy: IfNotPresent
+  repository: fastapi-gitops-starter
+  pullPolicy: Never
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.4"
+  tag: latest
 
 registry:
   createImagePullSecret: true

@@ -1,0 +1,5 @@
+fileignoreconfig:
+- filename: .github/workflows/ci-cd.yml
+  checksum: 1c4380ae921f6f86f8bf2f0a0264daa884006659beeb8831bfbb11cd0d3d3e8f
+  ignore_detectors: []
+version: "1.0"

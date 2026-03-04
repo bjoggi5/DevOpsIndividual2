@@ -1,5 +1,57 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
+      # Prevent committing large files
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+      # Check YAML files for syntax errors (excluding helm charts)
+      - id: check-yaml
+        exclude: ^helm/
+
+  - repo: https://github.com/pycqa/isort
+    rev: 7.0.0
+    hooks:
+      # sort imports in python files (black style)
+      - id: isort
+        types : [python]
+        args : ["--profile", "black"]
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      # Prevent committing secrets
+      - id: gitleaks
+
+  - repo: https://github.com/thoughtworks/talisman
+    rev: 'v1.37.0'
+    hooks:
+      # security issue hook (secrets / sensitive info)
+      - id: talisman-commit
+
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.93.3
+    hooks:
+      # security issue hook (secrets / sensitive info)
+      - id: trufflehog
+
+
+  - repo : https://github.com/psf/black
+    rev: 26.1.0
+    hooks:
+      # code style
+      - id: black
+        types : [python]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.15.0
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+ci:
+  autoupdate_schedule: weekly

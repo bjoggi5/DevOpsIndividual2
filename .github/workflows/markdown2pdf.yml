@@ -19,7 +19,7 @@ jobs:
 
       - name: Replace links
         run: |
-          cp README.md README_WITH_LINKS.md 
+          cp README.md README_WITH_LINKS.md
           sed -i -e "s#\(^\!\[[^]]\+\](\)\(images/\)#\1$URL/\2#g" README_WITH_LINKS.md
           for file in sources/*; do sed -i -e "s#($file)#($URL/$file)#g" README_WITH_LINKS.md ; done
 

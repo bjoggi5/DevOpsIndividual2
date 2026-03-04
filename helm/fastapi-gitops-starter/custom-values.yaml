@@ -1,0 +1,37 @@
+# Enable HPA
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 10  # Low threshold for testing
+
+# Set resource requests (required for HPA)
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m      # HPA uses this as baseline
+    memory: 128Mi
+
+# Standard deployment settings
+replicaCount: 1  # Ignored when HPA enabled
+image:
+  repository: fastapi-gitops-starter
+  tag: latest
+  pullPolicy: Never  # Use local image from minikube
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8000
+
+# Enable ingress for testing
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: minikube.test
+      paths:
+        - path: /GitOps-Starter
+          pathType: Prefix
